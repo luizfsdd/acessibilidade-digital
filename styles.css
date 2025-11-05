@@ -1,39 +1,41 @@
+:root{
+  --font-scale: 100%;
+  --bg:#ffffff;
+  --text:#111111;
+  --header-bg:#0c4a6e;
+  --header-text:#ffffff;
+  --link:#0b6ed0;
+  --muted:#f1f5f9;
+}
 
-:root { --font-scale: 100%; }
-* { box-sizing: border-box; }
-html { font-size: var(--font-scale); }
-body {
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
-  line-height: 1.6;
-  margin: 0;
-  color: #222;
-  background: #fff;
+.alto-contraste{
+  --bg:#000000;
+  --text:#ffffff;
+  --header-bg:#000000;
+  --header-text:#ffffff;
+  --link:#ffffff;
+  --muted:#000000;
 }
-.alto-contraste body,
-.alto-contraste {
-  color: #000;
-  background: #fff;
+
+html{ font-size:var(--font-scale); }
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:Arial, Helvetica, sans-serif; line-height:1.6;
 }
-header {
-  background: #0c4a6e;
-  color: #fff;
-  padding: 1rem;
+
+header{
+  background:var(--header-bg); color:var(--header-text); padding:1rem;
 }
-.subtitle { margin-top: -0.4rem; font-size: 1rem; opacity: 0.9; }
-nav ul { display: flex; flex-wrap: wrap; gap: .75rem; list-style: none; padding: 0; }
-nav a { color: #e0f2fe; text-decoration: underline; }
-.controls { margin-top: .75rem; display: flex; gap: .5rem; }
-.controls button { padding: .5rem .75rem; border: none; border-radius: .5rem; cursor: pointer; }
-main { max-width: 900px; margin: 0 auto; padding: 1rem; }
-section { margin: 1.25rem 0; }
-h1, h2 { line-height: 1.25; }
-code { background: #f1f5f9; padding: .1rem .3rem; border-radius: .25rem; }
-footer { padding: 1rem; text-align: center; background: #f8fafc; font-size: .9rem; }
-.nota { font-size: .9rem; background: #f1f5f9; padding: .5rem; border-left: 4px solid #0ea5e9; }
-@media (prefers-color-scheme: dark) {
-  body { background: #0b1220; color: #e5e7eb; }
-  header { background: #0f172a; }
-  nav a { color: #93c5fd; }
-  code { background: #111827; }
-  footer { background: #0f172a; }
+
+nav ul{ list-style:none; padding:0; display:flex; gap:.75rem; flex-wrap:wrap; }
+nav a{ color:var(--header-text); text-decoration:underline; }
+
+.controls button{
+  background:none; border:2px solid var(--header-text);
+  color:var(--header-text); padding:.5rem .75rem; border-radius:.5rem; cursor:pointer;
 }
+
+main{ max-width:900px; margin:auto; padding:1rem; }
+section{ margin:1.25rem 0; }
+
+footer{ text-align:center; padding:1rem; background:var(--muted); }
