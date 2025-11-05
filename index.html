@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c4a6e">
   <title>Tecnologia e Cidadania – Acessibilidade Digital nas Escolas</title>
-  <meta name="description" content="Projeto de extensão para conscientização sobre direitos humanos com foco em acessibilidade digital e direito à educação.">
+  <meta name="description" content="Projeto de extensão com foco em acessibilidade digital e direito à educação.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header>
+<header role="banner">
   <h1 id="topo">Tecnologia e Cidadania</h1>
   <p class="subtitle">Acessibilidade digital e direito à educação</p>
 
@@ -30,13 +31,12 @@
   </div>
 </header>
 
-<main id="conteudo">
+<main id="conteudo" role="main">
   <section id="sobre">
     <h2>Sobre o projeto</h2>
     <p>
       Este projeto de extensão promove a conscientização sobre <strong>direitos humanos</strong>, com foco na
-      <strong>acessibilidade digital</strong> como parte do direito à educação. O objetivo é apoiar escolas e a comunidade
-      a identificar barreiras de acesso e adotar soluções simples e gratuitas.
+      <strong>acessibilidade digital</strong> como parte do direito à educação.
     </p>
     <p class="nota">Todo o conteúdo é de uso livre sob licença CC BY-SA 4.0.</p>
   </section>
@@ -47,31 +47,28 @@
       <li>Imagens sem <em>texto alternativo</em> (alt).</li>
       <li>Baixo contraste entre texto e fundo.</li>
       <li>Vídeos sem legendas e sem Libras.</li>
-      <li>Navegação confusa para leitores de tela (falta de headings e landmarks).</li>
-      <li>Conteúdos apenas em PDF sem versão HTML acessível.</li>
+      <li>Navegação confusa para leitores de tela.</li>
     </ul>
   </section>
 
   <section id="checklist">
-    <h2>Checklist rápido (WCAG iniciante)</h2>
+    <h2>Checklist rápido</h2>
     <ol>
-      <li>Descreva imagens com <code>alt</code> claro.</li>
-      <li>Garanta contraste adequado (recomendado &ge; 4.5:1).</li>
-      <li>Use títulos hierárquicos (h1, h2, h3...).</li>
+      <li>Descreva imagens com <code>alt</code>.</li>
+      <li>Use contraste adequado (&ge; 4.5:1).</li>
+      <li>Organize títulos (h1, h2, h3...).</li>
       <li>Permita navegação só com teclado.</li>
-      <li>Ofereça legenda, transcrição ou Libras em vídeos.</li>
-      <li>Evite texto em imagem quando possível.</li>
+      <li>Legende vídeos.</li>
     </ol>
   </section>
 
   <section id="ferramentas">
     <h2>Ferramentas gratuitas</h2>
     <ul>
-      <li><a href="https://wave.webaim.org" target="_blank" rel="noopener">WAVE (verificador de acessibilidade)</a></li>
-      <li><a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener">Contrast Checker</a></li>
-      <li><a href="https://scribehow.com" target="_blank" rel="noopener">ScribeHow (passo a passo)</a></li>
-      <li><a href="https://www.canva.com" target="_blank" rel="noopener">Canva (posts com alt text)</a></li>
-      <li><a href="https://www.captionfy.io" target="_blank" rel="noopener">Captionfy (legendas colaborativas)</a></li>
+      <li><a href="https://wave.webaim.org" target="_blank">WAVE</a></li>
+      <li><a href="https://webaim.org/resources/contrastchecker/" target="_blank">Contrast Checker</a></li>
+      <li><a href="https://www.canva.com" target="_blank">Canva</a></li>
+      <li><a href="https://www.captionfy.io" target="_blank">Captionfy</a></li>
     </ul>
   </section>
 
@@ -79,52 +76,45 @@
     <h2>Perguntas frequentes</h2>
     <details>
       <summary>O que é acessibilidade digital?</summary>
-      <p>É garantir que todas as pessoas, incluindo pessoas com deficiência, possam perceber, entender, navegar e interagir com conteúdos digitais.</p>
+      <p>Permitir que qualquer pessoa use conteúdos online sem barreiras.</p>
     </details>
     <details>
       <summary>Por que isso é um direito humano?</summary>
-      <p>Sem acessibilidade, estudantes podem ser excluídos do processo educacional, violando princípios de igualdade e não discriminação.</p>
-    </details>
-    <details>
-      <summary>Como começar sem gastar dinheiro?</summary>
-      <p>Use o checklist acima e as ferramentas gratuitas sugeridas; pequenas melhorias já geram grande impacto.</p>
+      <p>Sem acessibilidade, há exclusão educacional.</p>
     </details>
   </section>
 
   <section id="contato">
-    <h2>Contato para oficinas</h2>
-    <p><strong>Equipe:</strong> Luiz Dias.</p>
+    <h2>Contato</h2>
+    <p><strong>Responsável:</strong> Luiz Felipe Souza Dias</p>
     <p><strong>E-mail:</strong> luizfsdfacul@gmail.com</p>
   </section>
 </main>
 
-<footer>
-  <p>Conteúdo publicado em 05/11/2025. <a href="#topo">Voltar ao topo</a></p>
+<footer role="contentinfo">
+  <p>Conteúdo publicado em 2025. <a href="#topo">Voltar ao topo</a></p>
 </footer>
 
 <script>
-  (function(){
-    const root = document.documentElement;
-    const btnC = document.getElementById('contraste');
-    const btnPlus = document.getElementById('aumentar');
-    const btnMinus = document.getElementById('diminuir');
-    let size = 100;
+  const root = document.documentElement;
+  const btnC = document.getElementById('contraste');
+  const btnPlus = document.getElementById('aumentar');
+  const btnMinus = document.getElementById('diminuir');
+  let size = 100;
 
-    btnC.addEventListener('click', () => {
-      const on = root.classList.toggle('alto-contraste');
-      btnC.setAttribute('aria-pressed', on ? 'true' : 'false');
-    });
+  btnC.onclick = () => {
+    root.classList.toggle('alto-contraste');
+  };
 
-    btnPlus.addEventListener('click', () => {
-      size = Math.min(140, size + 10);
-      root.style.setProperty('--font-scale', size + '%');
-    });
+  btnPlus.onclick = () => {
+    size = Math.min(160, size + 10);
+    root.style.setProperty('--font-scale', size + '%');
+  };
 
-    btnMinus.addEventListener('click', () => {
-      size = Math.max(80, size - 10);
-      root.style.setProperty('--font-scale', size + '%');
-    });
-  })();
+  btnMinus.onclick = () => {
+    size = Math.max(80, size - 10);
+    root.style.setProperty('--font-scale', size + '%');
+  };
 </script>
 </body>
 </html>
