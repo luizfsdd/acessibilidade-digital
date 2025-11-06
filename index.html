@@ -5,9 +5,118 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0c4a6e">
   <title>Tecnologia e Cidadania – Acessibilidade Digital nas Escolas</title>
-  <meta name="description" content="Projeto de extensão com foco em acessibilidade digital e direito à educação.">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Projeto de extensão para conscientização sobre direitos humanos com foco em acessibilidade digital e direito à educação.">
+
+  <!-- ESTILOS (inline para facilitar copiar/colar) -->
+  <style>
+    :root{
+      --font-scale: 100%;
+      --bg:#ffffff;
+      --text:#111111;
+      --header-bg:#0c4a6e;
+      --header-text:#ffffff;
+      --link:#0b6ed0;
+      --link-visited:#6b21a8;
+      --muted:#f1f5f9;
+      --code-bg:#f1f5f9;
+      --outline:#111111;
+    }
+    html{ font-size:var(--font-scale); }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+      line-height:1.6;
+    }
+
+    /* Alto contraste (aplicado em <html>) */
+    .alto-contraste{
+      --bg:#000000;
+      --text:#ffffff;
+      --header-bg:#000000;
+      --header-text:#ffffff;
+      --link:#ffffff;
+      --link-visited:#e5e7eb;
+      --muted:#000000;
+      --code-bg:#000000;
+      --outline:#ffffff;
+    }
+
+    header{
+      background:var(--header-bg); color:var(--header-text); padding:1rem;
+    }
+    .subtitle{ margin-top:-.4rem; font-size:1rem; opacity:.95; }
+    nav ul{ list-style:none; padding:0; display:flex; flex-wrap:wrap; gap:.75rem; margin: .5rem 0 0; }
+    nav a{ color:var(--header-text); text-decoration:underline; }
+
+    .controls{ margin-top:.75rem; display:flex; gap:.5rem; flex-wrap: wrap; }
+    .controls button{
+      padding:.5rem .75rem; border:2px solid var(--header-text);
+      background:transparent; color:var(--header-text);
+      border-radius:.5rem; cursor:pointer;
+    }
+
+    main{ max-width: 960px; margin:0 auto; padding:1rem; }
+    section{ margin:1.25rem 0; }
+    h1,h2{ line-height:1.25; }
+    code{ background: var(--code-bg); padding:.1rem .3rem; border-radius:.25rem; }
+    a{ color:var(--link); }
+    a:visited{ color:var(--link-visited); }
+    footer{ padding:1rem; text-align:center; background: var(--muted); font-size:.95rem; }
+
+    :focus-visible{ outline: 3px solid var(--outline); outline-offset: 3px; }
+    .nota{ font-size:.95rem; background: var(--muted); padding:.5rem; border-left:4px solid #0ea5e9; }
+
+    /* Guia rápido (para prints bonitos) */
+    #guia {
+      margin-top: 50px;
+      background: rgba(0,0,0,0.03);
+      padding: 30px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+    .alto-contraste #guia{
+      background:#000; border-color:#fff;
+    }
+    #guia h2 { text-align:center; margin-bottom: .75rem; }
+    .guia-lista{ columns: 2; gap: 2rem; padding-left: 1rem; }
+    .guia-lista li{ margin:.4rem 0; }
+
+    /* Leitor de voz */
+    .sr-only {
+      position:absolute!important; width:1px; height:1px; padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+    #leitor { margin: 2rem 0; }
+    #leitor h2 { margin-bottom: .75rem; }
+    .leitor-painel {
+      background: var(--muted);
+      border: 1px solid rgba(0,0,0,.08);
+      padding: 1rem; border-radius: .75rem;
+      display: grid; gap: .75rem;
+    }
+    .alto-contraste .leitor-painel { background:#000; border-color:#fff; }
+    .leitor-label { display:flex; align-items:center; gap:.5rem; flex-wrap: wrap; }
+    #vozSelect{ min-width: 260px; }
+    #velocidade{ width: 180px; }
+    .leitor-botoes{ display:flex; flex-wrap:wrap; gap:.5rem; }
+    .leitor-botoes button{
+      border: 2px solid currentColor; background:transparent;
+      padding:.5rem .8rem; border-radius:.5rem; cursor:pointer;
+    }
+    .leitor-botoes .pri{ background:#16a34a; color:#fff; border-color:#16a34a; }
+    .leitor-botoes .perigo{ color:#ef4444; border-color:#ef4444; }
+    .leitor-atalhos{ font-size:.9rem; opacity:.8; }
+    .leitor-alvo{ margin-top:.5rem; }
+    #leitorTextoEspelho{ padding:.75rem; background:#fff1; border-radius:.5rem; }
+
+    .leitor-destaque{
+      background:#fde68a; color:#111; border-radius:.25rem; padding:.05rem .2rem;
+    }
+    .alto-contraste .leitor-destaque{ background:#fff; color:#000; }
+  </style>
 </head>
+
 <body>
 <header role="banner">
   <h1 id="topo">Tecnologia e Cidadania</h1>
@@ -19,7 +128,9 @@
       <li><a href="#problemas">Problemas</a></li>
       <li><a href="#checklist">Checklist</a></li>
       <li><a href="#ferramentas">Ferramentas</a></li>
+      <li><a href="#guia">Guia rápido</a></li>
       <li><a href="#faq">Perguntas frequentes</a></li>
+      <li><a href="#leitor">Leitor de voz</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
   </nav>
@@ -36,7 +147,8 @@
     <h2>Sobre o projeto</h2>
     <p>
       Este projeto de extensão promove a conscientização sobre <strong>direitos humanos</strong>, com foco na
-      <strong>acessibilidade digital</strong> como parte do direito à educação.
+      <strong>acessibilidade digital</strong> como parte do direito à educação. O objetivo é apoiar escolas e a comunidade
+      a identificar barreiras de acesso e adotar soluções simples e gratuitas.
     </p>
     <p class="nota">Todo o conteúdo é de uso livre sob licença CC BY-SA 4.0.</p>
   </section>
@@ -47,28 +159,44 @@
       <li>Imagens sem <em>texto alternativo</em> (alt).</li>
       <li>Baixo contraste entre texto e fundo.</li>
       <li>Vídeos sem legendas e sem Libras.</li>
-      <li>Navegação confusa para leitores de tela.</li>
+      <li>Navegação confusa para leitores de tela (falta de headings e landmarks).</li>
+      <li>Conteúdos apenas em PDF sem versão HTML acessível.</li>
     </ul>
   </section>
 
   <section id="checklist">
-    <h2>Checklist rápido</h2>
+    <h2>Checklist rápido (WCAG iniciante)</h2>
     <ol>
-      <li>Descreva imagens com <code>alt</code>.</li>
-      <li>Use contraste adequado (&ge; 4.5:1).</li>
-      <li>Organize títulos (h1, h2, h3...).</li>
+      <li>Descreva imagens com <code>alt</code> claro.</li>
+      <li>Garanta contraste adequado (recomendado &ge; 4.5:1).</li>
+      <li>Use títulos hierárquicos (h1, h2, h3...).</li>
       <li>Permita navegação só com teclado.</li>
-      <li>Legende vídeos.</li>
+      <li>Ofereça legenda, transcrição ou Libras em vídeos.</li>
+      <li>Evite texto em imagem quando possível.</li>
     </ol>
   </section>
 
   <section id="ferramentas">
     <h2>Ferramentas gratuitas</h2>
     <ul>
-      <li><a href="https://wave.webaim.org" target="_blank">WAVE</a></li>
-      <li><a href="https://webaim.org/resources/contrastchecker/" target="_blank">Contrast Checker</a></li>
-      <li><a href="https://www.canva.com" target="_blank">Canva</a></li>
-      <li><a href="https://www.captionfy.io" target="_blank">Captionfy</a></li>
+      <li><a href="https://wave.webaim.org" target="_blank" rel="noopener">WAVE (verificador de acessibilidade)</a></li>
+      <li><a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener">Contrast Checker</a></li>
+      <li><a href="https://scribehow.com" target="_blank" rel="noopener">ScribeHow (passo a passo)</a></li>
+      <li><a href="https://www.canva.com" target="_blank" rel="noopener">Canva (posts com alt text)</a></li>
+      <li><a href="https://www.captionfy.io" target="_blank" rel="noopener">Captionfy (legendas colaborativas)</a></li>
+    </ul>
+  </section>
+
+  <!-- NOVO: Guia rápido para ótimos prints -->
+  <section id="guia">
+    <h2>Guia Rápido de Acessibilidade Digital</h2>
+    <ul class="guia-lista">
+      <li>✔ Use texto alternativo (ALT) em imagens</li>
+      <li>✔ Garanta contraste mínimo de 4.5:1</li>
+      <li>✔ Estruture títulos em h1, h2, h3</li>
+      <li>✔ Permita navegação por teclado</li>
+      <li>✔ Ofereça legendas ou transcrições em vídeos</li>
+      <li>✔ Evite “clique aqui”; prefira links descritivos</li>
     </ul>
   </section>
 
@@ -76,45 +204,219 @@
     <h2>Perguntas frequentes</h2>
     <details>
       <summary>O que é acessibilidade digital?</summary>
-      <p>Permitir que qualquer pessoa use conteúdos online sem barreiras.</p>
+      <p>É garantir que todas as pessoas, incluindo pessoas com deficiência, possam perceber, entender, navegar e interagir com conteúdos digitais.</p>
     </details>
     <details>
       <summary>Por que isso é um direito humano?</summary>
-      <p>Sem acessibilidade, há exclusão educacional.</p>
+      <p>Sem acessibilidade, estudantes podem ser excluídos do processo educacional, violando princípios de igualdade e não discriminação.</p>
+    </details>
+    <details>
+      <summary>Como começar sem gastar dinheiro?</summary>
+      <p>Use o checklist acima e as ferramentas gratuitas sugeridas; pequenas melhorias já geram grande impacto.</p>
+    </details>
+  </section>
+
+  <!-- NOVO: LEITOR DE VOZ COMPLETO -->
+  <section id="leitor" aria-labelledby="leitor-titulo">
+    <h2 id="leitor-titulo">Leitor de Voz (Acessibilidade)</h2>
+
+    <div class="leitor-painel" role="group" aria-label="Controles do leitor de voz">
+      <label for="vozSelect" class="sr-only">Selecione a voz</label>
+      <select id="vozSelect" aria-label="Selecionar voz"></select>
+
+      <label for="velocidade" class="leitor-label">Velocidade:
+        <input type="range" id="velocidade" min="0.6" max="1.6" step="0.1" value="1" aria-label="Velocidade da leitura">
+        <span id="velocidadeValor" aria-live="polite">1.0x</span>
+      </label>
+
+      <div class="leitor-botoes">
+        <button id="btnLer" class="pri">▶️ Ler página</button>
+        <button id="btnPausar">⏸️ Pausar</button>
+        <button id="btnRetomar">▶️ Retomar</button>
+        <button id="btnParar" class="perigo">⏹️ Parar</button>
+      </div>
+      <p class="leitor-atalhos" aria-hidden="true">
+        Atalhos: <kbd>L</kbd> ler • <kbd>P</kbd> pausar • <kbd>R</kbd> retomar • <kbd>S</kbd> parar
+      </p>
+    </div>
+
+    <details class="leitor-alvo">
+      <summary>Conteúdo que será lido (opcional visualizar)</summary>
+      <div id="leitorTextoEspelho"></div>
     </details>
   </section>
 
   <section id="contato">
-    <h2>Contato</h2>
-    <p><strong>Responsável:</strong> Luiz Felipe Souza Dias</p>
+    <h2>Contato para oficinas</h2>
+    <p><strong>Equipe:</strong> Luiz Dias.</p>
     <p><strong>E-mail:</strong> luizfsdfacul@gmail.com</p>
   </section>
 </main>
 
 <footer role="contentinfo">
-  <p>Conteúdo publicado em 2025. <a href="#topo">Voltar ao topo</a></p>
+  <p>Conteúdo publicado em 05/11/2025. <a href="#topo">Voltar ao topo</a></p>
 </footer>
 
+<!-- SCRIPTS -->
 <script>
-  const root = document.documentElement;
-  const btnC = document.getElementById('contraste');
-  const btnPlus = document.getElementById('aumentar');
-  const btnMinus = document.getElementById('diminuir');
-  let size = 100;
+  // Contraste e tamanho da fonte
+  (function(){
+    const root = document.documentElement;
+    const btnC = document.getElementById('contraste');
+    const btnPlus = document.getElementById('aumentar');
+    const btnMinus = document.getElementById('diminuir');
+    let size = 100;
 
-  btnC.onclick = () => {
-    root.classList.toggle('alto-contraste');
-  };
+    btnC.addEventListener('click', () => {
+      const on = root.classList.toggle('alto-contraste');
+      btnC.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
 
-  btnPlus.onclick = () => {
-    size = Math.min(160, size + 10);
-    root.style.setProperty('--font-scale', size + '%');
-  };
+    btnPlus.addEventListener('click', () => {
+      size = Math.min(160, size + 10);
+      root.style.setProperty('--font-scale', size + '%');
+    });
 
-  btnMinus.onclick = () => {
-    size = Math.max(80, size - 10);
-    root.style.setProperty('--font-scale', size + '%');
-  };
+    btnMinus.addEventListener('click', () => {
+      size = Math.max(80, size - 10);
+      root.style.setProperty('--font-scale', size + '%');
+    });
+  })();
+</script>
+
+<!-- Leitor de Voz -->
+<script>
+(function(){
+  if (!('speechSynthesis' in window)) {
+    console.warn('SpeechSynthesis não suportado neste navegador.');
+    const aviso = document.createElement('p');
+    aviso.role = 'alert';
+    aviso.textContent = 'Seu navegador não suporta leitor de voz. Use Chrome/Edge/Android.';
+    document.getElementById('leitor').appendChild(aviso);
+    return;
+  }
+
+  const synth = window.speechSynthesis;
+  const vozSelect = document.getElementById('vozSelect');
+  const velocidade = document.getElementById('velocidade');
+  const velocidadeValor = document.getElementById('velocidadeValor');
+  const btnLer = document.getElementById('btnLer');
+  const btnPausar = document.getElementById('btnPausar');
+  const btnRetomar = document.getElementById('btnRetomar');
+  const btnParar = document.getElementById('btnParar');
+  const conteudo = document.getElementById('conteudo'); // main existente
+  const espelho = document.getElementById('leitorTextoEspelho');
+
+  // Carregar vozes e priorizar pt-BR
+  let vozes = [];
+  function populaVozes() {
+    vozes = synth.getVoices();
+    vozSelect.innerHTML = '';
+    const ordenadas = vozes.sort((a,b)=> (a.lang > b.lang)?1:-1);
+    ordenadas.forEach((v,i)=>{
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = `${v.name} — ${v.lang}${v.default?' (padrão)':''}`;
+      vozSelect.appendChild(opt);
+    });
+    const idx = ordenadas.findIndex(v=> v.lang.toLowerCase().startsWith('pt-br'));
+    vozSelect.selectedIndex = idx >= 0 ? idx : 0;
+  }
+  populaVozes();
+  if (typeof speechSynthesis.onvoiceschanged !== 'undefined') {
+    speechSynthesis.onvoiceschanged = populaVozes;
+  }
+
+  // Texto do main (sem o próprio painel) → frases
+  function extraiTexto() {
+    const clone = conteudo.cloneNode(true);
+    const painel = clone.querySelector('#leitor');
+    if (painel) painel.remove();
+    return clone.innerText
+      .replace(/\s+\n/g,'\n')
+      .replace(/\n{2,}/g,'\n\n')
+      .trim();
+  }
+  function fatiarEmFrases(texto) {
+    const partes = texto.split(/([\.!\?]+)\s+/g);
+    const frases = [];
+    for (let i=0; i<partes.length; i+=2) {
+      const frase = (partes[i] || '').trim();
+      const pont = (partes[i+1] || '').trim();
+      if (frase) frases.push((frase + ' ' + (pont||'')).trim());
+    }
+    return frases.filter(f=>f.length>0);
+  }
+
+  // Destaque visual
+  let spansFrases = [];
+  function montaEspelho(frases){
+    espelho.innerHTML = '';
+    spansFrases = frases.map((f)=>{
+      const span = document.createElement('span');
+      span.textContent = f + ' ';
+      espelho.appendChild(span);
+      return span;
+    });
+  }
+  function destaca(i){
+    spansFrases.forEach(s=> s.classList.remove('leitor-destaque'));
+    if (spansFrases[i]) {
+      spansFrases[i].classList.add('leitor-destaque');
+      spansFrases[i].scrollIntoView({block:'center', behavior:'smooth'});
+    }
+  }
+
+  let fila = [];
+  let indiceAtual = 0;
+
+  function lerPagina(){
+    parar();
+    const frases = fatiarEmFrases(extraiTexto());
+    if (frases.length === 0) return;
+
+    montaEspelho(frases);
+    indiceAtual = 0;
+
+    const vozesOrdenadas = synth.getVoices().sort((a,b)=> (a.lang > b.lang)?1:-1);
+    const voz = vozesOrdenadas[vozSelect.selectedIndex] || null;
+    const rate = parseFloat(velocidade.value || '1');
+
+    fila = frases.map((f, idx)=>{
+      const u = new SpeechSynthesisUtterance(f);
+      u.lang = (voz && voz.lang) || 'pt-BR';
+      u.voice = voz || null;
+      u.rate = rate;
+      u.onstart = ()=> destaca(idx);
+      u.onend = ()=> { indiceAtual = idx + 1; };
+      return u;
+    });
+
+    fila.forEach(u => synth.speak(u));
+  }
+  function pausar(){ if (synth.speaking && !synth.paused) synth.pause(); }
+  function retomar(){ if (synth.paused) synth.resume(); }
+  function parar(){ synth.cancel(); spansFrases.forEach(s=> s.classList.remove('leitor-destaque')); indiceAtual = 0; }
+
+  btnLer.addEventListener('click', lerPagina);
+  btnPausar.addEventListener('click', pausar);
+  btnRetomar.addEventListener('click', retomar);
+  btnParar.addEventListener('click', parar);
+
+  velocidade.addEventListener('input', e=>{
+    velocidadeValor.textContent = `${parseFloat(e.target.value).toFixed(1)}x`;
+  });
+
+  // Atalhos: L/P/R/S (ignora se estiver digitando em inputs)
+  document.addEventListener('keydown', (e)=>{
+    if (e.target && ['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)) return;
+    const k = e.key.toLowerCase();
+    if (k === 'l') { e.preventDefault(); lerPagina(); }
+    if (k === 'p') { e.preventDefault(); pausar(); }
+    if (k === 'r') { e.preventDefault(); retomar(); }
+    if (k === 's') { e.preventDefault(); parar(); }
+  });
+})();
 </script>
 </body>
 </html>
